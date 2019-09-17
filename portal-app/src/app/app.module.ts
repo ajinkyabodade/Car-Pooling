@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { AppRoutingModule } from './app.routing.module';
 import {UserService} from './user/user.service';
+import {UserregisterService} from './userregister/userregister.service';
 import {HttpClientModule} from "@angular/common/http";
 import {AddUserComponent} from './user/add-user.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 import { UserregisterComponent } from './userregister/userregister.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { UserregisterComponent } from './userregister/userregister.component';
     UserComponent,
     AddUserComponent,
     UserloginComponent,
-    UserregisterComponent
+    UserregisterComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { UserregisterComponent } from './userregister/userregister.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService,UserregisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,7 +10,7 @@ import { UserregisterService } from './userregister.service';
   styleUrls: ['./userregister.component.css']
 })
 
-export class UserregisterComponent implements OnInit {
+export class UserregisterComponent  {
 
   user: User = new User();
 
@@ -30,4 +30,5 @@ export class UserregisterComponent implements OnInit {
 
 
 
-}
+
+

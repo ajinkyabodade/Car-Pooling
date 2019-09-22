@@ -9,14 +9,18 @@ const httpOptions = {
 };
 
 @Injectable()
-export class UserregisterService {
+export class UserloginService {
 
   constructor(private http:HttpClient) {}
 
-  private userUrl = 'http://localhost:8080/user-portal/users';
+  private userUrl = 'http://localhost:8080/user-portal/users/login';
   //private userUrl = '/api';
-  public createUser(user) {
-    return this.http.post<User>(this.userUrl, user);
+
+  public checkUser(user) {
+    // return this.http.post(this.userUrl,{"email":email,"psw":psw});
+     // return this.http.get(this.userUrl + "?email="+ email + "&psw="+ psw );
+         return this.http.post<User>(this.userUrl, user);
   }
+
 
 }

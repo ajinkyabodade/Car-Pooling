@@ -18,8 +18,8 @@
     <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
     <div class="w3-right w3-hide-small">
       <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
-      <a *ngIf="isSignIn=='/home'" routerLink="/register" onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">Register</a>
-      <a *ngIf="isSignIn=='/home'" routerLink="/login" onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">Login</a>
+      <a *ngIf="userLogin==0" routerLink="/register" onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">Register</a>
+      <a *ngIf="userLogin==0" routerLink="/login" onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">Login</a>
     </div>
   </div>
 </div>

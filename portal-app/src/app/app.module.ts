@@ -7,6 +7,7 @@ import { UserComponent } from './user/user.component';
 import { AppRoutingModule } from './app.routing.module';
 import {UserService} from './user/user.service';
 import {UserregisterService} from './userregister/userregister.service';
+import {UserloginService} from './userlogin/userlogin.service';
 import {HttpClientModule} from "@angular/common/http";
 import {AddUserComponent} from './user/add-user.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
@@ -29,7 +30,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService,UserregisterService],
+  providers: [UserService,UserregisterService,UserloginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

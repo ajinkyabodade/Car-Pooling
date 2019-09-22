@@ -10,15 +10,13 @@ import { Location } from "@angular/common";
 	
 
 
-export class AppComponent implements OnInit {
+export class AppComponent  {
 
-	private isSignIn="false";
+	private userLogin="";
 	
   constructor(location: Location) {
-   this.isSignIn = location.path();
-  }
+   this.userLogin = sessionStorage.getItem('islogin');
 
-  ngOnInit() {
-  };
+  }
 
 }

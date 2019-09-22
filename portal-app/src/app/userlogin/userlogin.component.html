@@ -13,13 +13,13 @@
   <form class="modal-content animate" action="/action_page.php" method="post" style="width:50%">
     <div class="container1">
 	  <h1>Sign In</h1>
-      <label for="uname"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="uname" required>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" [(ngModel)]="user.email" name="email" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" placeholder="Enter Password" [(ngModel)]="user.password" name="password" required>
         
-      <button type="submit">Login</button>
+      <button (click)="login()">Login</button>
     </div>
     <div class="container1" style="background-color:#f1f1f1">
       <button type="button" routerLink="/home" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>

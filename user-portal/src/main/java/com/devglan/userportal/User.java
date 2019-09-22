@@ -13,7 +13,7 @@ public class User {
     @Column
     private String f_name;
     @Column
-    private String c_name;
+    private int c_id;
     @Column
     private String email;
     @Column
@@ -47,12 +47,12 @@ public class User {
         this.f_name = fName;
     }
 
-    public String getCompanyName() {
-        return c_name;
+    public int getCompanyName() {
+        return c_id;
     }
 
-    public void setCompanyName(String cName) {
-        this.c_name = cName;
+    public void setCompanyName(int cName) {
+        this.c_id = cName;
     }
 
     public String getEmail() {

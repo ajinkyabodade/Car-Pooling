@@ -1,0 +1,39 @@
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
+    <div class="w3-right w3-hide-small">
+      <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
+      <a  class="w3-bar-item w3-button">Welcome</a>
+      <a (click)="logout()" class="w3-bar-item w3-button">Logout</a>
+    </div>
+  </div>
+</div>
+<div>
+
+<div style="padding-top:60px;">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="hidden">cid</th>
+    <th>Source</th>
+    <th>Destination</th>
+    <th>Vacant Space</th>
+    <th>Driver Name</th>
+    <th>Driver Mobile</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cab of this.cabbyid; let i = index">
+    <td class="hidden">{{cab.cid}}</td>
+    <td>{{cab.source}}</td>
+    <td>{{cab.destination}}</td>
+    <td>{{cab.vacantSpace}}</td>
+    <td>{{cab.driverName}}</td>
+    <td>{{cab.driverMob}}</td>
+
+    <td ><button class="btn btn-danger" (click)="optcab(cab.cid,i)">Opt Cab</button></td>
+  </tr>
+  </tbody>
+</table>
+</div>

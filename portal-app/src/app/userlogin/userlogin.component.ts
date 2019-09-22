@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { User } from '../models/user.model';
 import { UserloginService } from './userlogin.service';
 
@@ -26,9 +25,10 @@ export class UserloginComponent {
         	{
 	        	alert("Wrong Email or Password"); return;
         	}else{
-        		sessionStorage.setItem('islogin', data.id);
+        		sessionStorage.setItem('userId', data.id);
+            sessionStorage.setItem('userCid', data.id);
         		alert("Login Successfully!!");
-        		 let userLogin = sessionStorage.getItem('islogin');
+            this.router.navigate(['/userDashboard']);
         	}
 	      });
 	}

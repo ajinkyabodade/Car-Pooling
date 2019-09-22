@@ -1,36 +1,7 @@
-<!-- <div class="container-fluid"> -->
-<!-- <div class="col-md-offset-1">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-</div> -->
-
-
 <html>
 <title>Car Pooling</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
-    <div class="w3-right w3-hide-small">
-      <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
-      <a *ngIf="userLogin==0" routerLink="/register" onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">Register</a>
-      <a *ngIf="userLogin==0" routerLink="/login" onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">Login</a>
-    </div>
-  </div>
-</div>
 <router-outlet></router-outlet>
-<!-- <a routerLink="/users">List Users</a> -->
-<!-- <a style="margin-left:10px" routerLink="/add">Add User</a> -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Developed by Ajinkya</p>
-</footer>
-</body>
-</html>
-
-<!-- </div> -->
-

@@ -30,6 +30,12 @@ public class CabController {
         cab.setCid(cid);
         return cabService.update(cab);
     }
- 
     
+    @RequestMapping(value = "/viewusercab", method = RequestMethod.POST)
+   	public Cab findBycid(@RequestBody Cab cid) 
+   	{
+   		return cabService.findBycid(cid.getCid());
+   	}
+ 
+     
 }

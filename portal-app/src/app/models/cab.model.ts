@@ -1,5 +1,5 @@
 export class Cab {
-
+		
   cid: string;
   companyName	: string;
   driverName: string;

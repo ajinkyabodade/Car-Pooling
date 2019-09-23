@@ -25,5 +25,12 @@ public class CabServiceImpl implements CabService {
 	 public Cab update(Cab cab) {
 	    return repository.save(cab);
 	 }
+	 
+		@Override
+		public Cab findBycid(int cid) {
+			return repository.findBycid(cid);
+		}
+		
+	 
 
 }

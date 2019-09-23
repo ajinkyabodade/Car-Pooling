@@ -13,6 +13,11 @@ import { UserdashboardService } from './userdashboard.service';
 export class UserDashboardComponent implements OnInit {
  cabbyid: Cab = new Cab();
  trip: Trip = new Trip();
+ trip1: Trip = new Trip();
+ usercab: Cab = new Cab();
+ tripid:string;
+ tripstatus:string ="false";
+
 
   constructor(private router: Router,private userdashboardService: UserdashboardService) { }
 
@@ -26,10 +31,29 @@ export class UserDashboardComponent implements OnInit {
             
   	this.cabbyid.comanyId=sessionStorage.getItem('userCid');
 
+    this.trip1.userid=sessionStorage.getItem('userCid');
+    this.userdashboardService.gettrip(this.trip1)
+      .subscribe( data => {
+        if(!data.cid){
+
+        }else{
+            if(data.is_approved=="1"){
+              this.tripstatus="approved";
+            }else{
+              this.tripstatus="requested";
+            }
+          this.tripid=data.id;
+          this.usercab.cid=data.cid;
+        this.userdashboardService.getUserCab(this.usercab)
+          .subscribe( data => {
+            this.usercab = data;
+          });
+        }
+      });
+
   	this.userdashboardService.getCabs(this.cabbyid)
       .subscribe( data => {
         this.cabbyid = data;
-        console.log(this.cabbyid);
       });
   }
 
@@ -50,6 +74,18 @@ export class UserDashboardComponent implements OnInit {
             alert("Cab Request Succesfull!"); 
         });
       });
+   }
+
+  cancelcab(){
+      this.usercab.vacantSpace=(parseInt(this.usercab.vacantSpace)+1)+"";
+       this.userdashboardService.deletetrip(this.tripid)
+      .subscribe(data => {
+          this.userdashboardService.updatecabvacancy(this.usercab.cid, this.usercab)
+          .subscribe(data => {
+              alert("Cab Cancelled Successfull!"); 
+              this.tripstatus="false";
+          });
+        });
    }
   
   logout(){

@@ -11,4 +11,6 @@ public interface CabRepository extends Repository<Cab, Integer> {
     List<Cab> findByCompnyId(String CompnyId);
     
     Cab save(Cab cab);
+    
+    Cab findBycid(int cid);
 }

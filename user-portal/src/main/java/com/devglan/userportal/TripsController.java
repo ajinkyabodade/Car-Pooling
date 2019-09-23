@@ -19,13 +19,13 @@ public class TripsController {
         return TripsService.create(trips);
     }
     
-    @RequestMapping(value = "/viewUserTrip", method = RequestMethod.POST)
+    @RequestMapping(value = "/viewusertrip", method = RequestMethod.POST)
 	public Trips findByuserid(@RequestBody Trips userid) 
 	{
 		return TripsService.findByuserid(userid.getuserid());
 	}
     
-    @DeleteMapping(path ={"/delete/{id}"})
+    @DeleteMapping(path ={"/{id}"})
     public Trips delete(@PathVariable("id") String id) {
         return TripsService.delete(id);
     }

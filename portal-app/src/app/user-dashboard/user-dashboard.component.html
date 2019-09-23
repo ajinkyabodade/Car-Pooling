@@ -1,39 +1,91 @@
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
-    <div class="w3-right w3-hide-small">
-      <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
-      <a  class="w3-bar-item w3-button">Welcome</a>
-      <a (click)="logout()" class="w3-bar-item w3-button">Logout</a>
+<div class="w3-top w3-hide-small">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+      <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
+      <div class="w3-right">
+        <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
+        <a  class="w3-bar-item w3-button">Welcome</a>
+        <a (click)="logout()" class="w3-bar-item w3-button">Logout</a>
+      </div>
     </div>
   </div>
-</div>
-<div>
 
-<div style="padding-top:60px;">
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th class="hidden">cid</th>
-    <th>Source</th>
-    <th>Destination</th>
-    <th>Vacant Space</th>
-    <th>Driver Name</th>
-    <th>Driver Mobile</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let cab of this.cabbyid; let i = index">
-    <td class="hidden">{{cab.cid}}</td>
-    <td>{{cab.source}}</td>
-    <td>{{cab.destination}}</td>
-    <td>{{cab.vacantSpace}}</td>
-    <td>{{cab.driverName}}</td>
-    <td>{{cab.driverMob}}</td>
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card w3-hide-large w3-hide-medium">
+  <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
+    <div style="display: inline-flex;" class="">
+        <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
+        <a  class="w3-bar-item w3-button">Welcome</a>
+        <a (click)="logout()" class="w3-bar-item w3-button">Logout</a>
+      </div>
+  </div>
 
-    <td ><button class="btn btn-danger" (click)="optcab(cab.cid,i)">Opt Cab</button></td>
-  </tr>
-  </tbody>
-</table>
+  <div style="padding-top:5%; padding-bottom: 20px;">
+
+  <div style="text-align: -webkit-center;" *ngIf="tripstatus!='false'">
+    <div class="w3-card-2" style="width:80%;">
+      <header class="w3-container w3-blue">
+        <h3 *ngIf="tripstatus=='requested'" style="margin:3px;">You have already requested for cab</h3>
+        <h3 *ngIf="tripstatus=='approved'" style="margin:3px;">Congratulations!!! Your cab request has been approved!</h3>
+      </header>
+
+      <div class="w3-container">
+        <div style="padding:20px"class="row">
+        <div class="col-sm-6">
+          <i *ngIf="tripstatus=='requested'" class="material-icons" style="font-size:48px;color:gold">check_circle</i>
+          <i *ngIf="tripstatus=='approved'" class="material-icons" style="font-size:48px;color:green">check_circle</i>
+
+          <div  *ngIf="tripstatus=='requested'" ><b>Your request has been succesfully send to your company, Kindly wait until your manager accepts it.</b></div>
+          <div  *ngIf="tripstatus=='approved'" ><b>Your cab request has been approved!, No you can take your cab</b></div>
+
+
+          <div style="padding: 10px;"><button type="button" (click)="cancelcab()" class="btn btn-warning">Cancel Cab</button></div>
+        </div>
+        <div class="col-sm-6">
+         <div class="w3-hide-large w3-hide-medium"> <hr></div>
+          <div style="font-size:18px; padding:4px;"><b>Cab Details</b></div>
+          <div style="padding:4px;">
+              <div><span style="font-size:16px;"><b>Source : </b></span><span>{{usercab.source}}</span></div>
+              <div><span style="font-size:16px;"><b>Destination : </b></span><span>{{usercab.destination}}</span></div>
+              <div><span style="font-size:16px;"><b>Driver Name : </b></span><span>{{usercab.driverName}}</span></div>
+              <div><span style="font-size:16px;"><b>Driver Mobile : </b></span><span>{{usercab.driverMob}}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <div class="table-responsive">
+      <div style="text-align:center;padding-bottom: 10px;"><h2>Available Cabs</h2></div>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th class="hidden">cid</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Vacant Space</th>
+          <th>Driver Name</th>
+          <th>Driver Mobile</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let cab of this.cabbyid; let i = index">
+          <td class="hidden">{{cab.cid}}</td>
+          <td>{{cab.source}}</td>
+          <td>{{cab.destination}}</td>
+          <td>{{cab.vacantSpace}}</td>
+          <td>{{cab.driverName}}</td>
+          <td>{{cab.driverMob}}</td>
+          <td ><button class="btn btn-danger" [attr.title]="tripstatus!='false' ? 'Cancel your current cab to opt for new cab' : 'Opt Cab'" [disabled]="tripstatus!='false'"  (click)="optcab(cab.cid,i)">Opt Cab</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
 </div>
+

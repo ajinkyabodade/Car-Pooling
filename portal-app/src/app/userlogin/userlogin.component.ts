@@ -26,7 +26,9 @@ export class UserloginComponent {
 	        	alert("Wrong Email or Password"); return;
         	}else{
         		sessionStorage.setItem('userId', data.id);
-            sessionStorage.setItem('userCid', data.id);
+            sessionStorage.setItem('userCid', data.companyName);
+            sessionStorage.setItem('userName', data.fullName);
+
         		alert("Login Successfully!!");
             this.router.navigate(['/userDashboard']);
         	}

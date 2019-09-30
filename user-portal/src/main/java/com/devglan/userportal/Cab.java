@@ -31,6 +31,10 @@ public class Cab {
     private String driver_mob;
     @Column
     private String compnyId;
+    @Column
+    private String pickup;
+    @Column
+    private String dropoff;
     
 	
     public int getCid() {
@@ -103,5 +107,19 @@ public class Cab {
 
     public void setComanyId(String compnyId) {
         this.compnyId = compnyId;
+    }
+    public String getpickup() {
+        return pickup;
+    }
+
+    public void setPickup(String pickup) {
+        this.pickup = pickup;
+    }
+    public String getDropoff() {
+        return dropoff;
+    }
+
+    public void setDropoff(String dropoff) {
+        this.dropoff = dropoff;
     }
 }

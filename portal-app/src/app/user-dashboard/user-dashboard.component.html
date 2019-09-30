@@ -12,16 +12,17 @@
   <div class="w3-bar w3-white w3-wide w3-padding w3-card w3-hide-large w3-hide-medium">
   <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
     <div style="display: inline-flex;" class="">
+        <a  class="w3-bar-item w3-button">Hi {{userName}}</a>
         <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
         <a  class="w3-bar-item w3-button">Welcome</a>
         <a (click)="logout()" class="w3-bar-item w3-button">Logout</a>
       </div>
   </div>
 
-  <div style="padding-top:5%; padding-bottom: 20px;">
+  <div class="w3-light-grey" style="padding-top:7%; padding-bottom: 20px;">
 
   <div style="text-align: -webkit-center;" *ngIf="tripstatus!='false'">
-    <div class="w3-card-2" style="width:80%;">
+    <div class="w3-card-2 w3-white" style="width:85%;">
       <header class="w3-container w3-blue">
         <h3 *ngIf="tripstatus=='requested'" style="margin:3px;">You have already requested for cab</h3>
         <h3 *ngIf="tripstatus=='approved'" style="margin:3px;">Congratulations!!! Your cab request has been approved!</h3>
@@ -29,7 +30,7 @@
 
       <div class="w3-container">
         <div style="padding:20px"class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="padding-top:25px;border-right: 1px solid lightgrey;">
           <i *ngIf="tripstatus=='requested'" class="material-icons" style="font-size:48px;color:gold">check_circle</i>
           <i *ngIf="tripstatus=='approved'" class="material-icons" style="font-size:48px;color:green">check_circle</i>
 
@@ -43,10 +44,12 @@
          <div class="w3-hide-large w3-hide-medium"> <hr></div>
           <div style="font-size:18px; padding:4px;"><b>Cab Details</b></div>
           <div style="padding:4px;">
-              <div><span style="font-size:16px;"><b>Source : </b></span><span>{{usercab.source}}</span></div>
-              <div><span style="font-size:16px;"><b>Destination : </b></span><span>{{usercab.destination}}</span></div>
-              <div><span style="font-size:16px;"><b>Driver Name : </b></span><span>{{usercab.driverName}}</span></div>
-              <div><span style="font-size:16px;"><b>Driver Mobile : </b></span><span>{{usercab.driverMob}}</span></div>
+              <div><span style="font-size:14px;"><b>Source : </b></span><span>{{usercab.source}}</span></div>
+              <div><span style="font-size:14px;"><b>Destination : </b></span><span>{{usercab.destination}}</span></div>
+              <div><span style="font-size:14px;"><b>Pick up time : </b></span><span>{{usercab.pickup}}</span></div>
+              <div><span style="font-size:14px;"><b>Drop time : </b></span><span>{{usercab.dropoff}}</span></div>
+              <div><span style="font-size:14px;"><b>Driver Name : </b></span><span>{{usercab.driverName}}</span></div>
+              <div><span style="font-size:14px;"><b>Driver Mobile : </b></span><span>{{usercab.driverMob}}</span></div>
           </div>
         </div>
       </div>
@@ -54,9 +57,9 @@
   </div>
   </div>
 
-<div class="row">
+<div class="row w3-light-grey">
   <div class="col-sm-1"></div>
-  <div class="col-sm-10">
+  <div class="col-sm-10 w3-white w3-card"  style="margin-top:30px">
     <div class="table-responsive">
       <div style="text-align:center;padding-bottom: 10px;"><h2>Available Cabs</h2></div>
       <table class="table table-hover">
@@ -65,23 +68,29 @@
           <th class="hidden">cid</th>
           <th>Source</th>
           <th>Destination</th>
-          <th>Vacant Space</th>
+          <th>Pick Up Time</th>
+          <th>Drop Time</th>
+          <th>Vacant Seat</th>
           <th>Driver Name</th>
           <th>Driver Mobile</th>
           <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let cab of this.cabbyid; let i = index">
-          <td class="hidden">{{cab.cid}}</td>
-          <td>{{cab.source}}</td>
-          <td>{{cab.destination}}</td>
-          <td>{{cab.vacantSpace}}</td>
-          <td>{{cab.driverName}}</td>
-          <td>{{cab.driverMob}}</td>
-          <td ><button class="btn btn-danger" [attr.title]="tripstatus!='false' ? 'Cancel your current cab to opt for new cab' : 'Opt Cab'" [disabled]="tripstatus!='false'"  (click)="optcab(cab.cid,i)">Opt Cab</button>
-          </td>
-        </tr>
+        <ng-container *ngFor="let cab of this.cabbyid; let i = index">
+          <tr *ngIf="cab.driverAuth==1" >
+            <td class="hidden">{{cab.cid}}</td>
+            <td>{{cab.source}}</td>
+            <td>{{cab.destination}}</td>
+            <td>{{cab.pickup}}</td>
+            <td>{{cab.dropoff}}</td>
+            <td>{{cab.vacantSpace}}</td>
+            <td>{{cab.driverName}}</td>
+            <td>{{cab.driverMob}}</td>
+            <td ><button class="btn btn-primary" [attr.title]="tripstatus!='false' ? 'Cancel your current cab to opt for new cab' : 'Opt Cab'" [disabled]="tripstatus!='false'"  (click)="optcab(cab.cid,i)">Opt Cab</button>
+            </td>
+          </tr>
+        </ng-container>
         </tbody>
       </table>
     </div>

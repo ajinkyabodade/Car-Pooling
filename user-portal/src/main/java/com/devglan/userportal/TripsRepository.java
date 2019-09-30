@@ -10,6 +10,8 @@ public interface TripsRepository extends Repository<Trips, Integer> {
     
     Trips findByuserid(String userid);
     
+    List<Trips> findByCid(String cid);
+    
     Trips save(Trips trips);
     
     void delete(Trips trips);

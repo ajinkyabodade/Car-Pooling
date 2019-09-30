@@ -7,7 +7,11 @@ public interface TripsService {
 	
     Trips findByuserid(String userid);
     
+    List<Trips> findByCid(String cid);
+    
     Trips delete(String id);
     
     Trips create(Trips trips);
+    
+    Trips update(Trips trips);
 }

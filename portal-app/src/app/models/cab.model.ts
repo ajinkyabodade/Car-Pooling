@@ -6,6 +6,8 @@ export class Cab {
   vacantSpace: string;
   source: string;
   destination: string;
+  pickup: string;
+  dropoff: string;
   driverAuth: string;
   driverMob : string;
   comanyId: string;

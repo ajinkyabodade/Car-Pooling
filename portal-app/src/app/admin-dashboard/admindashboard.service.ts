@@ -11,15 +11,17 @@ const httpOptions = {
 };
 
 @Injectable()
-export class UserdashboardService {
+export class AdmindashboardService {
 
   constructor(private http:HttpClient) {}
 
   private cabUrl = 'http://localhost:8080/user-portal/cab/bycid';
   private cabUrld = 'http://localhost:8080/user-portal/cab';
   private tripUrl = 'http://localhost:8080/user-portal/trips';
-  private singletripUrl = 'http://localhost:8080/user-portal/trips/viewusertrip';
+  private singletripUrl = 'http://localhost:8080/user-portal/trips/viewctrip';
   private usercab = 'http://localhost:8080/user-portal/cab/viewusercab';
+  private getuserUrl = 'http://localhost:8080/user-portal/users';
+
 
 
 
@@ -32,8 +34,8 @@ export class UserdashboardService {
     return this.http.post<Cab>(this.usercab,cab);
   }
 
-  public optcab(trip) {
-    return this.http.post<Trip>(this.tripUrl,trip);
+  public updatetrip(tripid,trip) {
+    return this.http.put(this.tripUrl+ "/"+ tripid,trip);
  }
 
  public updatecabvacancy(cabid,cab) {
@@ -45,7 +47,13 @@ export class UserdashboardService {
   }
 
   public deletetrip(tripid) {
-    return this.http.delete(this.tripUrl + "/"+ tripid+"");
+    return this.http.delete(this.tripUrl + "/"+ tripid);
   }
+
+  public getuser(userid) {
+    return this.http.get(this.getuserUrl + "/"+ userid);  
+ }
+
+
 
 }

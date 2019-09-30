@@ -17,6 +17,7 @@ export class UserDashboardComponent implements OnInit {
  usercab: Cab = new Cab();
  tripid:string;
  tripstatus:string ="false";
+ userName:string;
 
 
   constructor(private router: Router,private userdashboardService: UserdashboardService) { }
@@ -29,12 +30,14 @@ export class UserDashboardComponent implements OnInit {
   	}
 
             
-  	this.cabbyid.comanyId=sessionStorage.getItem('userCid');
+  	this.cabbyid.comanyId=sessionStorage.getItem('adminCid');
+    this.userName=sessionStorage.getItem('userName');
+    this.trip1.userid=sessionStorage.getItem('userId');
 
-    this.trip1.userid=sessionStorage.getItem('userCid');
+
     this.userdashboardService.gettrip(this.trip1)
       .subscribe( data => {
-        if(!data.cid){
+        if(!data){
 
         }else{
             if(data.is_approved=="1"){
@@ -68,18 +71,31 @@ export class UserDashboardComponent implements OnInit {
 
       this.userdashboardService.optcab(this.trip)
       .subscribe( data => {
+            if(data.is_approved=="1"){
+              this.tripstatus="approved";
+            }else{
+              this.tripstatus="requested";
+            }
+            this.tripid=data.id;
+            this.usercab.cid=data.cid;
+          this.userdashboardService.getUserCab(this.usercab)
+          .subscribe( data => {
+            this.usercab = data;
+          });
+
         this.cabbyid[index]['vacantSpace']=this.cabbyid[index]['vacantSpace']-1;
         this.userdashboardService.updatecabvacancy(this.cabbyid[index]['cid'],this.cabbyid[index])
         .subscribe(data => {
-            alert("Cab Request Succesfull!"); 
+            alert("Cab Request Sent Succesfully!"); 
         });
       });
    }
 
   cancelcab(){
       this.usercab.vacantSpace=(parseInt(this.usercab.vacantSpace)+1)+"";
-       this.userdashboardService.deletetrip(this.tripid)
+       this.userdashboardService.deletetrip(this.trip1.userid)
       .subscribe(data => {
+        this.usercab.vacantSpace=(parseInt(this.usercab.vacantSpace)-1)+"";
           this.userdashboardService.updatecabvacancy(this.usercab.cid, this.usercab)
           .subscribe(data => {
               alert("Cab Cancelled Successfull!"); 
@@ -91,7 +107,7 @@ export class UserDashboardComponent implements OnInit {
   logout(){
 	  sessionStorage.removeItem('userId');
 	  alert("Logout Successfull!!");
-   	  this.router.navigate(['/home']);
+   	this.router.navigate(['/home']);
   }
 
 }

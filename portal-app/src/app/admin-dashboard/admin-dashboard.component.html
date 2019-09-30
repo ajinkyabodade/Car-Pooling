@@ -1,0 +1,135 @@
+<div class="w3-top w3-hide-small">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+      <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
+      <div class="w3-right">
+        <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
+        <a  class="w3-bar-item w3-button">Welcome</a>
+        <a (click)="logout()" class="w3-bar-item w3-button">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card w3-hide-large w3-hide-medium">
+  <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
+    <div style="display: inline-flex;" class="">
+        <a  class="w3-bar-item w3-button">Hi {{userName}}</a>
+        <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
+        <a  class="w3-bar-item w3-button">Welcome</a>
+        <a (click)="logout()" class="w3-bar-item w3-button">Logout</a>
+      </div>
+  </div>
+
+<div class="w3-light-grey" style="padding-top:5%; padding-bottom: 20px;">
+
+
+	<div class="row  w3-light-grey">
+	  <div class="col-sm-1"></div>
+	  <div class="col-sm-10 w3-card w3-white"  style="margin-top:30px">
+	    <div class="table-responsive">
+	      <div style="text-align:center;padding-bottom: 10px;"><h2>Authenticate / Approve Cab Driver</h2></div>
+	      <table class="table table-hover">
+	        <thead>
+	        <tr>
+	          <th class="hidden">cid</th>
+	          <th>Source</th>
+	          <th>Destination</th>
+	          <th>Pick Up Time</th>
+	          <th>Drop Time</th>
+	          <th>Driver Name</th>
+	          <th>Driver Mobile</th>
+	          <th>Status</th>
+	          <th>Action</th>
+	        </tr>
+	        </thead>
+	        <tbody>
+	        <tr *ngFor="let cab of this.cabbyid; let i = index">
+	          <td class="hidden">{{cab.cid}}</td>
+	          <td>{{cab.source}}</td>
+	          <td>{{cab.destination}}</td>
+	          <td>{{cab.pickup}}</td>
+	          <td>{{cab.dropoff}}</td>
+	          <td>{{cab.driverName}}</td>
+	          <td>{{cab.driverMob}}</td>
+	          <td>
+	          	<span *ngIf="cab.driverAuth=='1'" class="btn btn-success" style="cursor: default;">
+	        		<span >Approved</span>
+	          	</span>
+	          	<span *ngIf="cab.driverAuth=='0'" class="btn btn-warning" style="cursor: default;">
+	        		<span >Pending</span>
+	          	</span>
+	          </td>
+	          <td >
+	          	<button *ngIf="cab.driverAuth=='0'" class="btn btn-danger"  (click)="approvecab(cab.cid,i,1)">
+	          		<span  >Approve Cab</span>
+	         	</button>
+
+	          	<button *ngIf="cab.driverAuth=='1'" class="btn btn-danger"  (click)="approvecab(cab.cid,i,0)">
+	          		<span>Stop Cab</span>
+	         	</button>
+	          </td>
+	        </tr>
+	        </tbody>
+	      </table>
+	    </div>
+	  </div>
+	  <div class="col-sm-1"></div>
+	</div>
+
+
+
+	<div class="row  w3-light-grey">
+	  <div class="col-sm-1"></div>
+	  <div class="col-sm-10 w3-card w3-white"  style="margin-top:30px">
+	    <div class="table-responsive">
+	      <div style="text-align:center;padding-bottom: 10px;"><h2>Approve Employee Cab Request</h2></div>
+	      <table class="table table-hover">
+	        <thead>
+	        <tr>
+	          <th class="hidden">cid</th>
+	          <th>Employee Name</th>
+	          <th>Employeeid</th>
+	          <th>Source</th>
+	          <th>Destination</th>
+	          <th>Pick Up Time</th>
+	          <th>Drop Time</th>
+	          <th>Status</th>
+	          <th>Action</th>
+	        </tr>
+	        </thead>
+	        <tbody>
+	        <tr *ngFor="let detail of this.alltrips.trips; let i = index">
+	          <td class="hidden">{{detail.cab.cid}}</td>
+	          <td>{{detail.user.fullName}}</td>
+	          <td>{{detail.user.employeeId}}</td>
+	          <td>{{detail.cab.source}}</td>
+	          <td>{{detail.cab.destination}}</td>
+	          <td>{{detail.cab.pickup}}</td>
+	          <td>{{detail.cab.dropoff}}</td>
+	          <td>
+	          	<span *ngIf="detail.trip.is_approved=='1'" class="btn btn-success" style="cursor: default;">
+	        		<span >Approved</span>
+	          	</span>
+	          	<span *ngIf="detail.trip.is_approved=='0'" class="btn btn-warning" style="cursor: default;">
+	        		<span >Pending</span>
+	          	</span>
+	          </td>
+	          <td >
+	          	<button *ngIf="detail.trip.is_approved=='0'" class="btn btn-danger"  (click)="approvetrip(detail.trip.id,detail.trip)">
+	          		<span  >Approve Request</span>
+	         	</button>
+
+	          	<button *ngIf="detail.trip.is_approved=='1'" class="btn btn-danger"  (click)="approvecab(cab.cid,i,0)">
+	          		<span>Remove from Cab</span>
+	         	</button>
+	          </td>
+	        </tr>
+	        </tbody>
+	      </table>
+	    </div>
+	  </div>
+	  <div class="col-sm-1"></div>
+	</div>
+
+
+</div>
+

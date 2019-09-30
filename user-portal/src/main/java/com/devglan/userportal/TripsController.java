@@ -35,4 +35,16 @@ public class TripsController {
         return TripsService.findAll();
     }
     
+    @RequestMapping(value = "/viewctrip", method = RequestMethod.POST)
+	public List<Trips> findByCid(@RequestBody Trips cid) 
+	{
+		return TripsService.findByCid(cid.getcid());
+	}
+    
+    @PutMapping(path = {"/{tripid}"})
+    public Trips update(@PathVariable("tripid") int tripid, @RequestBody Trips trips){
+        trips.setid(tripid);
+        return TripsService.update(trips);
+    }
+    
 }

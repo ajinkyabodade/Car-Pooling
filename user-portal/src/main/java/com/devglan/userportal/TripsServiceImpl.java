@@ -21,6 +21,11 @@ public class TripsServiceImpl implements TripsService {
 		return repository.findByuserid(userid);
 	}
 	
+	@Override
+	public List<Trips> findByCid(String cid) {
+		return repository.findByCid(cid);
+	}
+	
 	  @Override
 	    public Trips delete(String id) {
 	        Trips trips = findByuserid(id);
@@ -34,5 +39,10 @@ public class TripsServiceImpl implements TripsService {
 	    public Trips create(Trips trips) {
 	        return repository.save(trips);
 	    }
+	  
+		 @Override
+		 public Trips update(Trips trips) {
+		    return repository.save(trips);
+		 }
 
 }

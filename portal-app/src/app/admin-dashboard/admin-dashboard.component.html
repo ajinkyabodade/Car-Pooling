@@ -2,6 +2,7 @@
     <div class="w3-bar w3-white w3-wide w3-padding w3-card">
       <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
       <div class="w3-right">
+        <a  class="w3-bar-item w3-button">Hi {{userName}},</a>
         <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
         <a  class="w3-bar-item w3-button">Welcome</a>
         <a (click)="logout()" class="w3-bar-item w3-button">Logout</a>
@@ -11,8 +12,8 @@
 
   <div class="w3-bar w3-white w3-wide w3-padding w3-card w3-hide-large w3-hide-medium">
   <a routerLink="/home" class="w3-bar-item w3-button"><b> <img src="https://icon-library.net/images/car-icon-images/car-icon-images-12.jpg" style="width:25px;height:25px"></b> Car Pool</a>
-    <div style="display: inline-flex;" class="">
-        <a  class="w3-bar-item w3-button">Hi {{userName}}</a>
+    <div style="display: inline-table;" class="">
+        <a  class="w3-bar-item w3-button">Hi {{userName}},</a>
         <a routerLink="/home" class="w3-bar-item w3-button">Home</a>
         <a  class="w3-bar-item w3-button">Welcome</a>
         <a (click)="logout()" class="w3-bar-item w3-button">Logout</a>
@@ -118,7 +119,7 @@
 	          		<span  >Approve Request</span>
 	         	</button>
 
-	          	<button *ngIf="detail.trip.is_approved=='1'" class="btn btn-danger"  (click)="approvecab(cab.cid,i,0)">
+	          	<button *ngIf="detail.trip.is_approved=='1'" class="btn btn-danger"  (click)="removefromcab(detail.trip.userid,i,detail.cab.cid)">
 	          		<span>Remove from Cab</span>
 	         	</button>
 	          </td>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
 import { UserloginService } from './userlogin.service';
+import * as sweetalert from 'sweetalert';
+
 
 
 @Component({
@@ -20,16 +22,30 @@ export class UserloginComponent {
 	    this.userloginService.checkUser(this.user)
 	      .subscribe( data => {
 	        if(!data){
-	        	alert("Wrong Email or Password"); return;
+            sweetalert({
+                title: "Wrong Email or Password",
+                icon: "error",
+              });
+
+            return;
 	        }else if(!data.id)
         	{
-	        	alert("Wrong Email or Password"); return;
+	        	sweetalert({
+                title: "Wrong Email or Password",
+                icon: "error",
+              });
+
+             return;
         	}else{
         		sessionStorage.setItem('userId', data.id);
             sessionStorage.setItem('userCid', data.companyName);
             sessionStorage.setItem('userName', data.fullName);
 
-        		alert("Login Successfully!!");
+            sweetalert({
+                title: "Login Successfull!",
+                icon: "success",
+              });
+
             this.router.navigate(['/userDashboard']);
         	}
 	      });

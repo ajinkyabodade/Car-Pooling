@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cab } from '../models/cab.model';
 import { Trip } from '../models/trip.model';
-
+import * as sweetalert from 'sweetalert';
 import { UserdashboardService } from './userdashboard.service';
 
 @Component({
@@ -25,7 +25,10 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit() {
 	if(!sessionStorage.getItem('userId'))
   	{
-	  alert("Login to Continue!!");
+      sweetalert({
+          title: "Login To Continue!!",
+          icon: "error",
+        });
    	  this.router.navigate(['/login']);
   	}
 
@@ -86,7 +89,11 @@ export class UserDashboardComponent implements OnInit {
         this.cabbyid[index]['vacantSpace']=this.cabbyid[index]['vacantSpace']-1;
         this.userdashboardService.updatecabvacancy(this.cabbyid[index]['cid'],this.cabbyid[index])
         .subscribe(data => {
-            alert("Cab Request Sent Succesfully!"); 
+            sweetalert({
+                title: "Successfull!!",
+                text: "Cab Request Sent Succesfully!",
+                icon: "success",
+              });
         });
       });
    }
@@ -98,7 +105,11 @@ export class UserDashboardComponent implements OnInit {
         this.usercab.vacantSpace=(parseInt(this.usercab.vacantSpace)-1)+"";
           this.userdashboardService.updatecabvacancy(this.usercab.cid, this.usercab)
           .subscribe(data => {
-              alert("Cab Cancelled Successfull!"); 
+              sweetalert({
+                  title: "Successfull!!",
+                  text: "Cab Cancelled Successfull!",
+                  icon: "success",
+                });
               this.tripstatus="false";
           });
         });
@@ -106,7 +117,10 @@ export class UserDashboardComponent implements OnInit {
   
   logout(){
 	  sessionStorage.removeItem('userId');
-	  alert("Logout Successfull!!");
+	  sweetalert({
+          title: "Logout Successfull!!",
+          icon: "warning",
+        });
    	this.router.navigate(['/home']);
   }
 

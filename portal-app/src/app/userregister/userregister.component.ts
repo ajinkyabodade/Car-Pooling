@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import * as sweetalert from 'sweetalert';
 import { User } from '../models/user.model';
 import { UserregisterService } from './userregister.service';
 
@@ -21,7 +21,11 @@ export class UserregisterComponent  {
   createUser(): void {
       this.userregisterService.createUser(this.user)
         .subscribe( data => {
-          alert("User created successfully.");
+          sweetalert({
+              title: "Registration Successfull!",
+              text:"Please Login to Continue"
+              icon: "success",
+            });
         });
 
   };
